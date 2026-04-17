@@ -1,0 +1,674 @@
+{
+  "name": "Telegram Message Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "2607e4c1-7e64-4acf-a279-0d99fbc0b57b",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        880
+      ],
+      "webhookId": "211ad419-c9c9-4ca5-bd6d-9d0d952a2fce",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "1a"
+                  },
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "1b"
+                  },
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "hi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "1c"
+                  }
+                ],
+                "combinator": "or"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "joke",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "2"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "quote",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "3a"
+                  },
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "motivation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "3b"
+                  }
+                ],
+                "combinator": "or"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "advice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "4"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "activity",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "5a"
+                  },
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "bored",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "5b"
+                  }
+                ],
+                "combinator": "or"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "fact",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "6"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "news",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true
+        }
+      },
+      "id": "29fcdee9-cbce-4755-a78c-de617f2537e1",
+      "name": "Route by Message",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        464,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "Welcome! Use these commands: Joke, Quote, Advice, Bored, Fact, or Weather.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "34568d32-a81e-4fa9-965e-a12d30606c21",
+      "name": "Send Welcome",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        688,
+        208
+      ],
+      "webhookId": "cc2ab49f-8a16-4c5b-bea8-4fd5556e8fc9",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://official-joke-api.appspot.com/random_joke",
+        "options": {}
+      },
+      "id": "820ee2b1-f513-4d59-8bc6-3f7e3d887fb1",
+      "name": "Fetch Joke",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "={{ $json.setup }}\n\n{{ $json.punchline }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "44885dea-880f-4ec2-8fb5-3a8476cba05d",
+      "name": "Send Joke",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        400
+      ],
+      "webhookId": "e4116dbd-8c64-424a-ab34-3b46656a9bc2",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://zenquotes.io/api/random",
+        "options": {}
+      },
+      "id": "74fdfdc6-b9ce-4059-9a20-9f97871da177",
+      "name": "Fetch Quote",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "={{ $json.q }} - {{ $json.a }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "032889ac-69b6-4679-9867-7105c6f81612",
+      "name": "Send Quote",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        592
+      ],
+      "webhookId": "9d74838b-c791-4359-a144-fec310cf4d40",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.adviceslip.com/advice",
+        "options": {}
+      },
+      "id": "2dc2974c-330b-4404-95e2-6f1bff9713b1",
+      "name": "Fetch Advice",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "=​{{ JSON.parse($json.data).slip.advice }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "154e09ed-41aa-4b4d-8fb4-41e38a692055",
+      "name": "Send Advice",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        784
+      ],
+      "webhookId": "2cc117ec-dcbf-4f40-9aa2-0ab60b58e5b5",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://bored-api.appbrewery.com/random",
+        "options": {}
+      },
+      "id": "f2e5f436-0277-4d63-8491-86da3dded511",
+      "name": "Fetch Activity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        976
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "=How about this: {{ $json.activity }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "5da9004c-8bc7-4975-8a0d-f4796f6da2b9",
+      "name": "Send Activity",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        976
+      ],
+      "webhookId": "5965f454-98a3-40eb-a763-55564ecf58c0",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://catfact.ninja/fact",
+        "options": {}
+      },
+      "id": "b254370c-6948-4e4a-8496-614c06c508e5",
+      "name": "Fetch Cat Fact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        1168
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "={{ $json.fact }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a14695ec-bdc9-4854-9c03-09ffc33d4faf",
+      "name": "Send Cat Fact",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        1168
+      ],
+      "webhookId": "39dd8489-9c03-43f3-acac-7acf7cf12e69",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/top-headlines?country=us",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "7b2c28a7-a94a-4b55-b756-fd4ba3b75be3",
+      "name": "Fetch News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        688,
+        1360
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fB0eeY8wudXCUQL4",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $(\"Telegram Trigger\").item.json.message.chat.id }}",
+        "text": "= {{ $json.articles[Math.floor(Math.random() * $json.articles.length)].url }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "6a6b1593-ed3c-46ef-a188-da68e1210781",
+      "name": "Send News",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        1360
+      ],
+      "webhookId": "9b9bd92f-3c26-4d6f-bceb-d2fbb614bb7e",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "🤔 I don't recognize that command! Try typing joke, news, or advice to see what I can do.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "4affaf4a-9fd5-475f-b4ee-e8e85302e25c",
+      "name": "Send Fallback",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        688,
+        1552
+      ],
+      "webhookId": "bfcd377f-58a9-489f-850d-1f985512c38e",
+      "credentials": {
+        "telegramApi": {
+          "id": "PMFlbqggACt2w1vy",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Route by Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Message": {
+      "main": [
+        [
+          {
+            "node": "Send Welcome",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Joke",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Quote",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Advice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Activity",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Cat Fact",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch News",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Joke": {
+      "main": [
+        [
+          {
+            "node": "Send Joke",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Quote": {
+      "main": [
+        [
+          {
+            "node": "Send Quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Advice": {
+      "main": [
+        [
+          {
+            "node": "Send Advice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Activity": {
+      "main": [
+        [
+          {
+            "node": "Send Activity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Cat Fact": {
+      "main": [
+        [
+          {
+            "node": "Send Cat Fact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch News": {
+      "main": [
+        [
+          {
+            "node": "Send News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1100c522-8bba-4c39-86bc-d133a2283cda",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "afa4ed51d662cbf043048c23907eb11a6a834ea7c58ddf48e87285b21e582512"
+  },
+  "id": "uqT3hNEzr7irRqSV",
+  "tags": []
+}
